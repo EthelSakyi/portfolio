@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+/* Light & Dark theme tokens */
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+/* Tailwind v4 inline theme hook */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* Base element styles */
+html {
+  color-scheme: light;
+  scroll-behavior: smooth; /* subtle smooth scrolling */
+}
+body {
+  background: var(--background);
+  color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Selection styling */
+::selection {
+  background: rgba(0, 0, 0, 0.12);
+  color: var(--foreground);
+}
+
+/* Hide horizontal scrollbar but keep drag behavior */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* === Carousel Marquee Animation === */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation-name: marquee;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+/* Accessibility: pause marquee for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee { animation: none !important; }
+}
+
+/* Subtle premium dark hero background (no grid, no noise asset needed) */
+.hero-bg {
+  /* base */
+  background-color: #000;
+
+  /* soft radial keylights */
+  background-image:
+    radial-gradient(900px 600px at 20% -10%, rgba(255,255,255,0.10), transparent 60%),
+    radial-gradient(800px 500px at 85% -15%, rgba(255,255,255,0.06), transparent 55%),
+    radial-gradient(1200px 900px at 50% 10%, rgba(255,255,255,0.04), transparent 60%);
+  background-repeat: no-repeat;
+}
+
+html {
+  scroll-behavior: auto !important;
+}
+
+
